@@ -1,0 +1,91 @@
+---
+// רצועת מדדים בסגנון "הצצה לשווקים" של דה-מרקר.
+// נתוני הדגמה — ניתן לחבר בעתיד לפיד נתונים חי (למשל API של הבורסה / ספק שערים).
+const items = [
+  { name: 'ת"א 35', value: '2,148.5', change: 0.65 },
+  { name: 'ת"א 125', value: '2,031.2', change: -1.38 },
+  { name: 'דולר / שקל', value: '3.68', change: 0.29 },
+  { name: 'יורו / שקל', value: '3.99', change: 0.41 },
+  { name: 'נאסד״ק', value: '18,342', change: 0.9 },
+  { name: 'דאו ג׳ונס', value: '41,120', change: -0.21 },
+  { name: 'ביטקוין', value: '$67,430', change: -1.12 },
+  { name: 'נפט Brent', value: '$82.4', change: 0.55 },
+];
+const fmt = (c: number) => (c > 0 ? `+${c.toFixed(2)}%` : `${c.toFixed(2)}%`);
+---
+
+<section class="ticker fullbleed" aria-label="מדדים ושווקים">
+  <div class="container ticker-in">
+    <span class="ticker-label">שווקים עכשיו</span>
+    <div class="ticker-scroll">
+      {items.map((it) => (
+        <span class="ticker-item">
+          <span class="ti-name">{it.name}</span>
+          <span class="ti-value">{it.value}</span>
+          <span class:list={['ti-change', it.change >= 0 ? 'up' : 'down']}>
+            {it.change >= 0 ? '▲' : '▼'} {fmt(it.change)}
+          </span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ticker {
+    background: var(--navy);
+    color: #fff;
+    border-top: 3px solid var(--accent);
+  }
+  .ticker-in {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    height: 46px;
+  }
+  .ticker-label {
+    flex: none;
+    font-family: var(--font);
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    padding-inline-end: 16px;
+    border-inline-end: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .ticker-scroll {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .ticker-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .ti-name {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .ti-value {
+    font-weight: 700;
+    color: #fff;
+  }
+  .ti-change {
+    font-weight: 700;
+    font-size: 0.82rem;
+  }
+  .ti-change.up {
+    color: #35d07f;
+  }
+  .ti-change.down {
+    color: #ff6b6b;
+  }
+</style>

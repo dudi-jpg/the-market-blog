@@ -1,0 +1,39 @@
+---
+// בר מדדים חי בזמן-אמת (TradingView Ticker Tape) — חינמי ומתעדכן לבד.
+const config = {
+  symbols: [
+    { proName: 'TASE:TA35', title: 'ת"א 35' },
+    { proName: 'TASE:TA125', title: 'ת"א 125' },
+    { proName: 'FX_IDC:USDILS', title: 'דולר/שקל' },
+    { proName: 'FX_IDC:EURILS', title: 'יורו/שקל' },
+    { proName: 'NASDAQ:IXIC', title: 'נאסד״ק' },
+    { proName: 'SP:SPX', title: 'S&P 500' },
+    { proName: 'DJ:DJI', title: 'דאו ג׳ונס' },
+    { proName: 'BINANCE:BTCUSDT', title: 'ביטקוין' },
+    { proName: 'TVC:GOLD', title: 'זהב' },
+    { proName: 'TVC:UKOIL', title: 'נפט' },
+  ],
+  showSymbolLogo: true,
+  isTransparent: false,
+  displayMode: 'adaptive',
+  colorTheme: 'dark',
+  locale: 'he_IL',
+};
+const snippet = `<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>${JSON.stringify(config)}</script></div>`;
+---
+
+<section class="tvticker fullbleed" aria-label="מדדים ושווקים בזמן אמת">
+  <Fragment set:html={snippet} />
+</section>
+
+<style>
+  .tvticker {
+    background: var(--navy);
+    border-top: 3px solid var(--accent);
+    min-height: 46px;
+  }
+  .tvticker :global(.tradingview-widget-container) {
+    max-width: var(--maxw);
+    margin-inline: auto;
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+// יומן כלכלי חי (TradingView Economic Calendar).
+const config = {
+  colorTheme: 'light',
+  isTransparent: true,
+  locale: 'he_IL',
+  countryFilter: 'us,eu,il,gb,jp,cn',
+  importanceFilter: '0,1',
+  width: '100%',
+  height: 480,
+};
+const snippet = `<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>${JSON.stringify(config)}</script></div>`;
+---
+
+<div class="tv-embed"><Fragment set:html={snippet} /></div>
+
+<style>
+  .tv-embed {
+    min-height: 460px;
+  }
+</style>
