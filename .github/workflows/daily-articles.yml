@@ -9,7 +9,7 @@ on:
       count:
         description: 'How many articles to generate'
         required: false
-        default: '5'
+        default: '10'
 
 permissions:
   contents: write
@@ -37,7 +37,7 @@ jobs:
       - name: Generate articles
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ARTICLES_PER_RUN: ${{ github.event.inputs.count || '5' }}
+          ARTICLES_PER_RUN: ${{ github.event.inputs.count || '10' }}
           # ARTICLE_MODEL: claude-opus-4-8   # override here if desired
         run: npm run generate:daily
 
